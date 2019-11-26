@@ -24,34 +24,16 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Adewole Ampitan</td>
-                      <td>ampitanade@gmail.com</td>
-                      <td>07 April 2018</td>
+                    <tr v-for="(invite, i) in invites" :key="i">
+                      <td>{{ invite.fullname }}</td>
                       <td>
-                        <button class="tertiary-btn" type="submit">
-                          Send Invite
-                        </button>
+                        {{ invite.email }}
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Adewole Ampitan</td>
-                      <td>ampitanade@gmail.com</td>
-                      <td>07 April 2018</td>
                       <td>
-                        <button class="tertiary-btn" type="submit">
-                          Send Invite
-                        </button>
+                        {{ invite.date_added | moment("dddd, MMMM Do YYYY") }}
                       </td>
-                    </tr>
-                    <tr>
-                      <td>Adewole Ampitan</td>
-                      <td>ampitanade@gmail.com</td>
-                      <td>07 April 2018</td>
                       <td>
-                        <button class="tertiary-btn" type="submit">
-                          Send Invite
-                        </button>
+                        send invite
                       </td>
                     </tr>
                   </tbody>
@@ -71,7 +53,39 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Invite"
+  name: "Invite",
+  computed: {
+    ...mapGetters(["invites", "user"])
+  },
+  methods: {
+    async fetch_invites() {
+      if (this.invites.length !== 0) {
+        return;
+      }
+      this.isLoading = true;
+      try {
+        let response = await this.$store.dispatch("fetchInvites");
+
+        const { success, message } = response;
+
+        if (success) {
+          this.$toast.success(`Welcome back ${this.user.full_name}`);
+        } else {
+          this.$toast.error(message);
+        }
+      } catch (error) {
+        console.error(error);
+        this.$toast.error("Sorry something went wrong");
+      }
+      this.isLoading = false;
+    }
+  },
+
+  mounted() {
+    this.fetch_invites();
+  }
 };
 </script>

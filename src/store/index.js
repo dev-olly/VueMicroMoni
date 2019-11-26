@@ -17,12 +17,14 @@ Vue.use(require("vue-moment"));
 export default new Vuex.Store({
   state: {
     user: {},
-    investments: []
+    investments: [],
+    invites: []
   },
   getters: {
     user: state => state.user,
     token: state => state.user.token,
-    investments: state => state.investments
+    investments: state => state.investments,
+    invites: state => state.invites
   },
   mutations: {
     setUser(state, user) {
@@ -38,6 +40,9 @@ export default new Vuex.Store({
       state.user.bank_name = newUser.bank_name;
       state.user.account_name = newUser.account_name;
       state.user.account_number = newUser.account_number;
+    },
+    setInvites(state, invites) {
+      state.invites = invites;
     }
   },
   actions: {
@@ -108,6 +113,34 @@ export default new Vuex.Store({
             } else {
               // mutations
               commit("setInvestment", userRes);
+              data = {
+                success: true
+              };
+            }
+            resolve(data);
+          })
+          .catch(err => reject(err));
+      });
+    },
+    fetchInvites({ commit, getters }) {
+      return new Promise((resolve, reject) => {
+        // Do something here... lets say, a http call using vue-resource
+        let headers = {
+          "x-access-token": getters.token
+        };
+        axios
+          .get(`${baseUrl}/fetch_invites`, { headers: headers })
+          .then(res => {
+            const { error, message, data: userRes = [] } = res.data;
+            let data;
+            if (error !== 0) {
+              data = {
+                success: false,
+                message: message
+              };
+            } else {
+              // mutations
+              commit("setInvites", userRes);
               data = {
                 success: true
               };
