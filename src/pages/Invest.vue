@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader :name="'Invest'" />
     <main>
       <div class="row">
         <div class="col-lg-2"></div>
@@ -41,7 +41,13 @@
                   <option value="6">6 months</option>
                 </select>
               </div>
-              <p>By continuing you accept our <a href="#">Terms</a> of Use</p>
+              <p>
+                By continuing you accept our
+                <a href="https://micromoni.com/Terms_and_conditions.html"
+                  >Terms</a
+                >
+                of Use
+              </p>
               <Rave
                 v-if="
                   amount !== '' &&

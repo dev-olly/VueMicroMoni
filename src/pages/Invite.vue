@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader :name="'Invite'" />
     <main class="pattern">
       <div class="blue-bg"></div>
       <div class="row">

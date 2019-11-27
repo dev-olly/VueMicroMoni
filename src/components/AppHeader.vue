@@ -11,13 +11,24 @@
         </div>
 
         <ul class="nav-links">
-          <li class="nav-link active">Home</li>
+          <li class="nav-link active">
+            <router-link to="/" class="nav-link active"> Home </router-link>
+          </li>
 
-          <li class="nav-link">Profile</li>
+          <li class="nav-link">
+            <router-link to="/profile" class="nav-link"> Profile </router-link>
+          </li>
 
-          <li class="nav-link">Settings</li>
-          <li class="nav-link">Invite Others</li>
-          <li class="nav-link">About</li>
+          <li class="nav-link">
+            <router-link to="/history" class="nav-link"> History </router-link>
+          </li>
+
+          <li class="nav-link">
+            <router-link to="/invite" class="nav-link">
+              Invite Others
+            </router-link>
+          </li>
+          <!-- <li class="nav-link">About</li> -->
         </ul>
       </div>
     </div>
@@ -369,7 +380,7 @@
         <i class="material-icons d-inline-block pointer" @click="toggleMenu()"
           >menu</i
         >
-        <span class="d-inline-block logo">Logo</span>
+        <span class="d-inline-block logo">{{ name }}</span>
       </nav>
     </div>
   </header>
@@ -391,6 +402,9 @@ export default {
     toggleMenu() {
       this.toggle = !this.toggle;
     }
+  },
+  props: {
+    name: String
   }
 };
 </script>
@@ -398,5 +412,9 @@ export default {
 <style lang="scss">
 .logout {
   cursor: pointer;
+}
+
+.small .nav-link {
+  color: rgb(128, 126, 126);
 }
 </style>

@@ -7,7 +7,7 @@
       :type="'ripple'"
       v-if="isLoading"
     />
-    <AppHeader />
+    <AppHeader :name="'Home'" />
     <main class="pattern">
       <div class="blue-bg"></div>
       <div class="row">

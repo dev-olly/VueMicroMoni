@@ -19,8 +19,8 @@
         </h2>
       </div>
       <div class="col-sm-6">
-        <div class="auth-form mt-5">
-          <h5>Sign Up</h5>
+        <div class="auth-form">
+          <h5>Login</h5>
           <form action="POST" @submit.prevent="loginUser">
             <p class="error">{{ message }}</p>
             <div class="form-group">
@@ -106,3 +106,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+section {
+  align-items: center;
+}
+</style>
