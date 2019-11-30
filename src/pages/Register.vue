@@ -108,10 +108,12 @@ export default {
               if (success) {
                 this.$router.replace({ name: "login" });
               } else {
+                this.isLoading = false;
                 this.$toast.error(message);
               }
             })
             .catch(err => {
+              this.isLoading = false;
               this.$toast.error(err);
             });
         } else {
@@ -120,6 +122,7 @@ export default {
       } catch (error) {
         this.$toast.error("Sorry something went wrong");
       }
+      this.isLoading = false;
     }
   },
   mounted() {
