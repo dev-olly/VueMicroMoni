@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AppHeader />
+    <AppHeader :name="'Profile'" />
     <main>
       <div class="blue-bg"></div>
       <div class="row">

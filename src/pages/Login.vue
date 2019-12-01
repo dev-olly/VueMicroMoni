@@ -46,7 +46,7 @@
           </form>
           <p class="mt-2">
             Dont have an account?
-            <router-link to="register">Register</router-link>
+            <router-link to="register">Signup</router-link>
           </p>
         </div>
       </div>

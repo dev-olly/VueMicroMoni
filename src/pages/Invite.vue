@@ -1,6 +1,7 @@
 <template>
   <div>
     <AppHeader :name="'Invite'" />
+    <Modal v-if="show" :url="url" @close="toggleShow" />
     <main class="pattern">
       <div class="blue-bg"></div>
       <div class="row">
@@ -20,7 +21,6 @@
                       <th scope="col">Name</th>
                       <th scope="col">Email Address</th>
                       <th scope="col">Date</th>
-                      <th scope="col"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -32,14 +32,11 @@
                       <td>
                         {{ invite.date_added | moment("dddd, MMMM Do YYYY") }}
                       </td>
-                      <td>
-                        send invite
-                      </td>
                     </tr>
                   </tbody>
                 </table>
                 <div class="text-center">
-                  <button class="btn btn-lg btn-primary">
+                  <button class="btn btn-lg btn-primary" @click="toggleShow">
                     Send Invite
                   </button>
                 </div>
@@ -59,6 +56,12 @@ export default {
   name: "Invite",
   computed: {
     ...mapGetters(["invites", "user"])
+  },
+  data() {
+    return {
+      url: "",
+      show: false
+    };
   },
   methods: {
     async fetch_invites() {
@@ -81,11 +84,15 @@ export default {
         this.$toast.error("Sorry something went wrong");
       }
       this.isLoading = false;
+    },
+    toggleShow() {
+      this.show = !this.show;
     }
   },
 
   mounted() {
     this.fetch_invites();
+    this.url = `https://crowdfunding.micromoni.com/register/${this.user.user_id}`;
   }
 };
 </script>

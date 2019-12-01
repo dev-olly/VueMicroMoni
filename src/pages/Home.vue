@@ -40,7 +40,7 @@
                   </div>
                   <div class="card-item">
                     <span class="d-block">Investment Duration</span>
-                    <span class="d-block">90 days</span>
+                    <span class="d-block">{{ duration }}</span>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="main-card text-center">
                   <small class="d-block">Loan Duration</small>
-                  <span class="green-text">90 Days</span>
+                  <span class="green-text">{{ duration }} months</span>
                 </div>
               </div>
               <div class="col-12"></div>
@@ -78,7 +78,7 @@
           </section>
 
           <section class="mt-4">
-            <h5 class="ml-2">Lending History</h5>
+            <h5 class="ml-2">Investment History</h5>
             <div class="row">
               <div class="col-sm-8">
                 <table
@@ -176,7 +176,8 @@ export default {
     return {
       isLoading: false,
       total: 0,
-      totalReturns: 0
+      totalReturns: 0,
+      duration: 0
     };
   },
   methods: {
@@ -187,6 +188,8 @@ export default {
           .reduce((acc, cv) => acc + cv);
         return;
       }
+      let allDuration = this.investments.filter(a => parseInt(a.duration));
+      this.duration = Math.max(...allDuration);
       this.isLoading = true;
       try {
         let response = await this.$store.dispatch("fetchInvestments");

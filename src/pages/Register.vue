@@ -51,7 +51,7 @@
               />
             </div>
 
-            <button class="btn btn-primary btn-lg btn-block">Register</button>
+            <button class="btn btn-primary btn-lg btn-block">Sign up</button>
           </form>
           <p class="mt-2">
             already have an account?
