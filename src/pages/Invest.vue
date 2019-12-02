@@ -37,8 +37,9 @@
                   @change.prevent="calculateReturns"
                 >
                   <option value selected>Default select</option>
-                  <option value="3">3 months</option>
-                  <option value="6">6 months</option>
+                  <option value="3">3 months(8.5%)</option>
+                  <option value="6">6 months(18%)</option>
+                  <option value="9">9 months(26%)</option>
                 </select>
               </div>
               <p>
@@ -166,12 +167,14 @@ export default {
       return;
     },
     calculateReturns() {
-      if (parseInt(this.amount) > 20000) {
+      if (parseInt(this.amount) >= 20000) {
         let amount = parseFloat(this.amount);
         if (this.duration === "3") {
           this.returns = Math.floor(amount + amount * 0.085);
         } else if (this.duration === "6") {
           this.returns = Math.floor(amount + amount * 0.18);
+        } else if (this.duration === "9") {
+          this.returns = Math.floor(amount + amount * 0.26);
         }
       }
       this.display = true;
