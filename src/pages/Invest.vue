@@ -19,7 +19,10 @@
                   class="form-control"
                   placeholder="Enter Amount"
                   v-model="amount"
-                  @change.prevent="confirmAmount"
+                  @change.prevent="
+                    confirmAmount();
+                    calculateReturns();
+                  "
                   required
                 />
               </div>
@@ -175,6 +178,8 @@ export default {
           this.returns = Math.floor(amount + amount * 0.18);
         } else if (this.duration === "9") {
           this.returns = Math.floor(amount + amount * 0.26);
+        } else {
+          return;
         }
       }
       this.display = true;

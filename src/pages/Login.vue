@@ -66,8 +66,7 @@ export default {
     };
   },
   methods: {
-    async loginUser() {
-      this.isLoading = true;
+    loginUser() {
       this.message = "";
       try {
         if ((this.email, this.password !== "")) {
@@ -75,6 +74,7 @@ export default {
             email: this.email,
             password: this.password
           };
+          this.isLoading = true;
 
           this.$store
             .dispatch("loginUser", userData)
@@ -85,6 +85,8 @@ export default {
                 return;
               }
               this.message = message;
+              this.isLoading = false;
+
               this.$toast.error(message);
               return;
             })
@@ -95,13 +97,15 @@ export default {
               this.$toast.error("sorry,something went wrong");
             });
         } else {
+          this.isLoading = false;
+
           this.$toast.error("Fill all fields");
         }
       } catch (error) {
+        this.isLoading = false;
+
         this.$toast.error("sorry, something went wrong");
       }
-
-      this.isLoading = false;
     }
   }
 };

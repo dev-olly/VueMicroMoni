@@ -112,7 +112,7 @@
                           </g>
                         </svg>
                       </i>
-                      <span class="d-inline-block">Lending</span>
+                      <span class="d-inline-block">Investing</span>
                     </router-link>
                   </li>
                   <li class="nav-item">

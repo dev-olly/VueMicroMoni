@@ -34,6 +34,11 @@ const routes = [
     }
   },
   {
+    path: "/success",
+    name: "Success",
+    component: loadView("success")
+  },
+  {
     path: "/profile",
     name: "Profile",
     component: loadView("Profile"),
