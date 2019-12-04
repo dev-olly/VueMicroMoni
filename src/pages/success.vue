@@ -4,10 +4,9 @@
       <div class="img-container text-center">
         <img src="../assets/undraw_Mail_sent_qwwx.svg" alt="" srcset="" />
         <p>
-          You were registered successfully, please check for a confirmation mail
-          and proceed to login
+          You were registered successfully, proceed to login
         </p>
-        <button class="btn btn-primary">Login</button>
+        <router-link to="/login" class="btn btn-primary">Login</router-link>
       </div>
     </section>
   </div>

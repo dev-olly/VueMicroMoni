@@ -106,7 +106,7 @@ export default {
               let { success, message } = data;
 
               if (success) {
-                this.$router.replace({ name: "login" });
+                this.$router.replace({ name: "Success" });
               } else {
                 this.isLoading = false;
                 this.$toast.error(message);
@@ -117,12 +117,15 @@ export default {
               this.$toast.error(err);
             });
         } else {
+          this.isLoading = false;
+
           this.$toast.error("Fill all parameters");
         }
       } catch (error) {
+        this.isLoading = false;
+
         this.$toast.error("Sorry something went wrong");
       }
-      this.isLoading = false;
     }
   },
   mounted() {
