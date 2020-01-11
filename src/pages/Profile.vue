@@ -10,7 +10,6 @@
         >
           <section class="profile">
             <div class="container">
-
               <div class="row mt-3">
                 <div class="col-sm-6 mt-2">
                   <h5>Profile Information</h5>

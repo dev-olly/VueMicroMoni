@@ -75,7 +75,11 @@
                 country="NG"
                 ><i>Proceed to payment</i></Rave
               >
-              <button class="btn btn-primary btn-lg" v-else>
+              <button
+                class="btn btn-primary btn-lg"
+                @click="fillAllInfo"
+                v-else
+              >
                 Proceed to payment
               </button>
             </div>
@@ -184,6 +188,9 @@ export default {
       }
       this.display = true;
       return;
+    },
+    fillAllInfo() {
+      this.$toast.error("fill all info");
     }
   }
 };

@@ -159,7 +159,7 @@ export default {
     this.bankName = this.user.bank_name;
     this.accountName = this.user.account_name;
     this.accountNo = this.user.account_number;
-    this.dob = this.user.user_dob
+    this.dob = this.user.user_dob;
   }
 };
 </script>

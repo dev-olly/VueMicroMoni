@@ -70,6 +70,24 @@
                 Twitter Invites
               </a>
             </li>
+            <li class="card-shadow cursor" @click="copyLink">
+              <svg
+                height="20"
+                viewBox="-40 0 512 512"
+                width="20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="m271 512h-191c-44.113281 0-80-35.886719-80-80v-271c0-44.113281 35.886719-80 80-80h191c44.113281 0 80 35.886719 80 80v271c0 44.113281-35.886719 80-80 80zm-191-391c-22.054688 0-40 17.945312-40 40v271c0 22.054688 17.945312 40 40 40h191c22.054688 0 40-17.945312 40-40v-271c0-22.054688-17.945312-40-40-40zm351 261v-302c0-44.113281-35.886719-80-80-80h-222c-11.046875 0-20 8.953125-20 20s8.953125 20 20 20h222c22.054688 0 40 17.945312 40 40v302c0 11.046875 8.953125 20 20 20s20-8.953125 20-20zm0 0"
+                />
+              </svg>
+              <input
+                type="text"
+                class="d-none"
+                id="copyLink"
+                v-model="url"
+              />Copy link
+            </li>
           </ul>
         </slot>
 
@@ -85,6 +103,13 @@ export default {
   methods: {
     close() {
       this.$emit("close");
+    },
+    copyLink() {
+      let copyText = document.getElementById("copyLink");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      this.$toast.success("Copied");
     }
   },
   props: {
@@ -150,6 +175,9 @@ a:hover {
   padding: 15px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.09);
   margin-bottom: 5px;
+}
+
+ul .card-shadow button {
 }
 
 .custom-modal ul li svg {
