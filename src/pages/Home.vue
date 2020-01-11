@@ -186,10 +186,10 @@ export default {
         this.total = this.investments
           .map(i => parseInt(i.amount))
           .reduce((acc, cv) => acc + cv);
+        let allDuration = this.investments.filter(a => parseInt(a.duration));
+        this.duration = Math.max(...allDuration);
         return;
       }
-      let allDuration = this.investments.filter(a => parseInt(a.duration));
-      this.duration = Math.max(...allDuration);
       this.isLoading = true;
       try {
         let response = await this.$store.dispatch("fetchInvestments");
