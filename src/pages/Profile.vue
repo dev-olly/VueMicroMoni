@@ -10,7 +10,6 @@
         >
           <section class="profile">
             <div class="container">
-              <div class="profile--image"></div>
 
               <div class="row mt-3">
                 <div class="col-sm-6 mt-2">
@@ -31,7 +30,7 @@
                     </div>
                     <div class="info" role="listitem">
                       <span class="d-block label">Date of Birth</span>
-                      <span class="d-block">{{ user.date_of_birth }}</span>
+                      <span class="d-block">{{ user.user_dob }}</span>
                     </div>
                   </div>
                 </div>
