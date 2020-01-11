@@ -18,7 +18,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 section {
   //   align-items: center;
   @media screen and (min-width: 768px) {

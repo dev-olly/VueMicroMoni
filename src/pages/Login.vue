@@ -91,7 +91,6 @@ export default {
               return;
             })
             .catch(err => {
-              console.error(err);
               this.isLoading = false;
               this.message = "sorry,something went wrong";
               this.$toast.error("sorry,something went wrong");
