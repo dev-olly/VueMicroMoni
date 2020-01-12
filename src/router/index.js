@@ -39,6 +39,16 @@ const routes = [
     component: loadView("success")
   },
   {
+    path: "/forget",
+    name: "ForgetPassword",
+    component: loadView("ForgetPassword")
+  },
+  {
+    path: "/new_password",
+    name: "NewPassword",
+    component: loadView("NewPassword")
+  },
+  {
     path: "/profile",
     name: "Profile",
     component: loadView("Profile"),

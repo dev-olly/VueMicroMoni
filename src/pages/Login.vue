@@ -48,6 +48,10 @@
             Dont have an account?
             <router-link to="register">Signup</router-link>
           </p>
+          <p class="mt-2">
+            Forget Password?
+            <router-link to="forget">Click here</router-link>
+          </p>
         </div>
       </div>
     </section>
