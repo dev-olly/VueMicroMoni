@@ -65,7 +65,7 @@ export default {
             "x-access-token": this.token
           };
           let reqData = {
-            newPassword: this.newPassword
+            new_password: this.newPassword
           };
 
           let response = await this.$http.put("/change_password", reqData, {
@@ -81,6 +81,9 @@ export default {
             this.$toast.error(message);
           }
         } else {
+          console.log(this.token);
+          console.log(this.newPassword);
+
           this.$toast.error("Fill all parameters");
         }
       } catch (error) {
@@ -91,11 +94,10 @@ export default {
   },
   created() {
     let token = this.$route.query.u;
-
     if (!token) {
-      this.token = token;
       this.$router.replace("login");
     }
+    this.token = token;
   }
 };
 </script>
