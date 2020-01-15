@@ -91,7 +91,9 @@ export default {
   },
   created() {
     let token = this.$route.query.u;
+
     if (!token) {
+      this.token = token;
       this.$router.replace("login");
     }
   }

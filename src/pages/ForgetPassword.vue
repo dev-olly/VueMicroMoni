@@ -19,7 +19,7 @@
         </h2>
       </div>
       <div class="col-sm-6">
-        <div class="auth-form">
+        <div class="auth-form" v-if="!showSuccessComponent">
           <h5>Login</h5>
           <form action="POST" @submit.prevent="submit">
             <p class="error">{{ message }}</p>
@@ -40,24 +40,34 @@
             <router-link to="register">Signup</router-link>
           </p>
         </div>
+        <transition name="fade">
+          <success v-if="showSuccessComponent" :isRecoverPassword="true" />
+        </transition>
       </div>
     </section>
   </div>
 </template>
 
 <script>
+import SuccessComponent from "@/components/success";
 export default {
   name: "forgetPassword",
   data() {
     return {
       email: "",
       isLoading: false,
-      message: ""
+      message: "",
+      isRecoverPassword: true,
+      showSuccessComponent: false
     };
+  },
+  components: {
+    success: SuccessComponent
   },
   methods: {
     async submit() {
       this.isLoading = true;
+
       try {
         if (this.email) {
           let reqData = {
@@ -68,6 +78,7 @@ export default {
           const { error, message } = response.data;
 
           if (error === 0) {
+            this.showSuccessComponent = true;
             this.$toast.success(message, {
               duration: 5000
             });
@@ -89,5 +100,12 @@ export default {
 <style lang="scss">
 section {
   align-items: center;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
