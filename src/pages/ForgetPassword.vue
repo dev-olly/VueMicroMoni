@@ -57,6 +57,7 @@ export default {
   },
   methods: {
     async submit() {
+      this.isLoading = true;
       try {
         if (this.email) {
           let reqData = {
@@ -67,7 +68,9 @@ export default {
           const { error, message } = response.data;
 
           if (error === 0) {
-            this.$toast.success(message);
+            this.$toast.success(message, {
+              duration: 5000
+            });
           } else {
             this.$toast.error(message);
           }
@@ -77,6 +80,7 @@ export default {
       } catch (error) {
         this.$toast.error("Sorry, something went wrong");
       }
+      this.isLoading = false;
     }
   }
 };
