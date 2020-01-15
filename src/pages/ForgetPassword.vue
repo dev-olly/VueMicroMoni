@@ -21,7 +21,7 @@
       <div class="col-sm-6">
         <div class="auth-form">
           <h5>Login</h5>
-          <form action="POST">
+          <form action="POST" @submit.prevent="submit">
             <p class="error">{{ message }}</p>
             <div class="form-group">
               <label for="email">Email Address</label>
@@ -55,7 +55,30 @@ export default {
       message: ""
     };
   },
-  methods: {}
+  methods: {
+    async submit() {
+      try {
+        if (this.email) {
+          let reqData = {
+            email: this.email
+          };
+          let response = await this.$http.post("/forget_password", reqData);
+
+          const { error, message } = response.data;
+
+          if (error === 0) {
+            this.$toast.success(message);
+          } else {
+            this.$toast.error(message);
+          }
+        } else {
+          this.$toast.error("Please enter your email");
+        }
+      } catch (error) {
+        this.$toast.error("Sorry, something went wrong");
+      }
+    }
+  }
 };
 </script>
 

@@ -21,7 +21,7 @@
       <div class="col-sm-6">
         <div class="auth-form">
           <h5>Set New Password</h5>
-          <form action="POST">
+          <form action="POST" @submit.prevent="submit">
             <p class="error">{{ message }}</p>
             <div class="form-group">
               <label for="email">New Password</label>
@@ -52,10 +52,49 @@ export default {
     return {
       newPassword: "",
       isLoading: false,
-      message: ""
+      message: "",
+      token: ""
     };
   },
-  methods: {}
+  methods: {
+    async submit() {
+      this.isLoading = true;
+      try {
+        if (this.token && this.newPassword !== "") {
+          let headers = {
+            "x-access-token": this.token
+          };
+          let reqData = {
+            newPassword: this.newPassword
+          };
+
+          let response = await this.$http.put("/change_password", reqData, {
+            headers: headers
+          });
+
+          const { error, message } = response.data;
+
+          if (error === 0) {
+            this.$toast.success("Successful");
+            this.$router.push("login");
+          } else {
+            this.$toast.error(message);
+          }
+        } else {
+          this.$toast.error("Fill all parameters");
+        }
+      } catch (error) {
+        this.$toast.error("Sorry, something went wrong");
+      }
+      this.isLoading = false;
+    }
+  },
+  created() {
+    let token = this.$route.query.u;
+    if (!token) {
+      this.$router.replace("login");
+    }
+  }
 };
 </script>
 
