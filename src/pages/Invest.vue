@@ -70,7 +70,7 @@
                 :customerFirstname="user.full_name"
                 paymentOptions="card,barter,account,ussd"
                 hostedPayemt="1"
-                customTitle="Testing title"
+                customTitle="Micromoni"
                 currency="NGN"
                 country="NG"
                 ><i>Proceed to payment</i></Rave
