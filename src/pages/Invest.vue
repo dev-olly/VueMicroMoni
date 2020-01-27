@@ -52,29 +52,33 @@
                 >
                 of Use
               </p>
-              <Rave
+              <div
+                class="button"
                 v-if="
                   amount !== '' &&
                     duration !== '' &&
                     parseFloat(amount) >= 20000
                 "
-                style-class="btn btn-primary btn-lg"
-                :email="user.user_email"
-                :amount="parseFloat(amount)"
-                :reference="reference"
-                :rave-key="raveKey"
-                :callback="callback"
-                :close="close"
-                :metadata="meta"
-                :redirectUrl="redirect"
-                :customerFirstname="user.full_name"
-                paymentOptions="card,barter,account,ussd"
-                hostedPayemt="1"
-                customTitle="Micromoni"
-                currency="NGN"
-                country="NG"
-                ><i>Proceed to payment</i></Rave
               >
+                <Rave
+                  style-class="btn btn-primary btn-lg"
+                  :email="user.user_email"
+                  :amount="parseFloat(amount)"
+                  :reference="reference"
+                  :rave-key="raveKey"
+                  :callback="callback"
+                  :close="close"
+                  :metadata="meta"
+                  :redirectUrl="redirect"
+                  :customerFirstname="user.full_name"
+                  paymentOptions="card,barter,account,ussd"
+                  hostedPayemt="1"
+                  customTitle="Micromoni"
+                  currency="NGN"
+                  country="NG"
+                  ><i>Proceed to payment</i></Rave
+                >
+              </div>
               <button
                 class="btn btn-primary btn-lg"
                 @click="fillAllInfo"
